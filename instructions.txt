@@ -1,0 +1,169 @@
+Problem#1:
+
+Introduction
+
+This time, the object that we are choosing is more complicated. It is made up of other objects. This is called aggregation. A credit card is an object that is very common, but not simple. Attributes of the credit card include information about the owner, as well as a balance and credit limit. These things would be our instance fields. A credit card allows you to make payments and charges. These would be methods. As we have seen before, there would also be other methods associated with this object in order to construct the object and access its fields.
+
+Examine the UML diagram that follows. Notice that the instance fields in the CreditCard class are other types of objects, a Person object or a Money object. We can say that the CreditCard “has a” Person, which means aggregation, and the Person object “has a” Address object as one of its instance fields. This aggregation structure can create a very complicated object. I will try to keep this lab reasonably simple.
+
+To start with, we will write the Class Money. We will investigate overloading methods by writing another constructor method. The constructor that you will be writing is a copy constructor. This means it should create a new object, but with the same values in the instance variables as the object that is being copied.
+
+Next, we will write equals and toString methods. These are very common methods that are needed when you write a class to model an object. You will also see a compareTo method that is also a common method for objects. Search online to look for Equals & CompareTo Methods.
+
+After we have finished the Money class, we will write a CreditCard class. This class contains Money objects, so you will use the methods that you have written to complete the Money class. The CreditCard class will explore passing objects and the possible security problems associated with it. We will use the copy constructor we wrote for the Money class to create new objects with the same information to return to the user through the accessor methods.
+
+
+Task #1 Overloading by Writing a Copy Constructor
+
+Overload the constructor. The constructor that you will write will be a copy constructor. It should use the parameter money object to make a duplicate money object, by copying the value of each instance variable from the parameter object to the instance variable of the new object.
+
+Task #2 Passing and Returning Objects
+
+1. Create a CreditCard class according to the UML Diagram on the back. It should have data fields that include an owner of type Person, a balance of type Money, and a creditLimit of type Money.
+
+2. It should have a constructor that has two parameters, a Person to initialize the owner and a Money value to initialize the creditLimit. The balance can be initialized to a Money value of zero. Remember you are passing in objects (pass by reference), so you have passed in the address to an object. If you want your
+
+CreditCard to have its own creditLimit and balance, you should create a new object of each using the copy constructor in the Money class.
+
+3. It should have accessor methods to get the balance and the available credit. Since these are objects (pass by reference), we don’t want to create an insecure credit card by passing out addresses to components in our credit card, so we must return a new object with the same values. Again, use the copy constructor
+
+to create a new object of type money that can be returned.
+
+4. It should have an accessor method to get the information about the owner, but in the form of a String that can be printed out. This can be done by calling the toString method for the owner (who is a Person).
+
+5. It should have a method that will charge to the credit card by adding the amount of Money in the parameter to the balance if it will not exceed the credit limit. If the credit limit will be exceeded, the amount should not be added, and an error message can be printed to the console.
+
+6. It should have a method that will make a payment on the credit card by subtracting the amount of Money in the parameter from the balance.
+
+7. Compile, debug, and test it out completely by running CreditCardDemo.java.
+
+Address.java
+
+//The code must be inserted ahead of the call to the content
+
+// Defines an address using a street, city, state, and zipcode
+
+Person.java
+
+// Defines a person by name and address
+
+CreditCardDemo.java
+
+// Demonstrates the CreditCard class
+
+public class CreditCardDemo {
+
+public static void main (String [] args) {
+
+final Money LIMIT = new Money(1000); final Money FIRST_AMOUNT = new Money(200); final Money SECOND_AMOUNT = new Money(10.02); final Money THIRD_AMOUNT = new Money(25); final Money FOURTH_AMOUNT = new Money(990);
+
+Person owner = new Person(“Christie”, “Diane”, new Address(“237J Harvey Hall”,”Menomonie”, “WI” , “54751”)); CreditCard visa = new CreditCard(owner, LIMIT); System.out.println(visa.getPersonals()); System.out.println(“Balance: ” + visa.getBalance()); System.out.println(“Credit Limit : ” + visa.getCreditLimit()); System.out.println(); System.out.println(“Attempt to charge ” + FIRST_AMOUNT);
+
+visa.charge(FIRST_AMOUNT); System.out.println(“Balance : ” + visa.getBalance()); System.out.println(“Attempt to charge ” + SECOND_AMOUNT); visa.charge(SECOND_AMOUNT); System.out.println(“Balance : ” + visa.getBalance()); System.out.println(“Attempt to pay ” + THIRD_AMOUNT); visa.payment(THIRD_AMOUNT);
+
+System.out.println("Balance : " + visa.getBalance());
+
+System.out.println("Attempt to charge " + FOURTH_AMOUNT);
+
+visa.charge(FOURTH_AMOUNT);
+
+System.out.println("Balance : " + visa.getBalance());
+
+
+}
+
+}
+
+You should get the output:
+
+Diane Christie, 237J Harvey Hall, Menomonie, WI
+54751
+Balance: $0.00
+Credit Limit: $1000.00
+Attempt to charge $200.00
+Charge: $200.00
+Balance: $200.00
+Attempt to charge $10.02
+Charge: $10.02
+Balance: $210.02
+Attempt to pay $25.00
+Payment: $25.00
+Balance: $185.02
+Attempt to charge $990.00
+Exceeds credit limit
+Balance: $185.02
+
+
+Deliverable:
+Complete and working-class files with proper comments.
+
+1. CreditCard.java
+2. Money.java
+3. Address.java
+4. Person.java
+5. CreditCardDemo.java
+6. Screenshot of the running code’s output
+
+
+
+************************************************************************************************
+
+PROBLEM 2
+
+Problem#2
+The MyLine and MyPoint Classes
+A class called MyLine, which models a line with a begin point at (x1, y1) and an end point at (x2, y2), is designed as shown in the class diagram. The MyLine class uses two MyPoint instances (written in the earlier exercise) as its begin and end points. Write the MyLine class. Also write a test driver to test all the public methods in the MyLine class.
+ 
+Deliverable: 
+Complete and working-class files with proper comments.
+1.	MyPoint.java
+2.	MyLine.java
+3.	TestMyLine.java 
+4.	Screenshots of the running code’s output
+
+
+PROBLEM#3
+The My Rectangle and My Point Classes
+
+Design a MyRectangle class which is composed of two MyPoint instances as its top-left and bottom-right corners. Draw the class diagram, write the code, and write the test file
+Deliverable: 
+Complete and working-class files with proper comments.
+5.	MyRectangle.java
+6.	TestMyRectangle.java 
+7.	Screenshots of the running code’s output
+
+
+
+PROBLEM#4
+This final problem synthesizes the concepts of aggregation and composition from the previous assessments. You will create a CampusMap class that models a university campus. This object will aggregate various geometric shapes and structures, requiring you to manage different types of objects in a single, cohesive unit. This will test your ability to build complex objects from simpler, pre-existing ones, and to write methods that operate on these aggregated components.
+The CampusMap will use your previously developed classes, MyLine, MyRectangle, and a MyCircle class to represent key features on the map.
+________________________________________
+Problem Description
+Create a CampusMap class that aggregates the following:
+1.	A list of MyLine objects, representing the walkways on campus. Each MyLine connects two MyRectangle objects (buildings).
+2.	A list of MyRectangle objects, representing the buildings on campus.
+3.	A list of MyCircle objects, representing roundabouts or fountains on campus. Each MyCircle is defined by a center MyPoint.
+________________________________________
+Required Methods for CampusMap
+Your CampusMap class must include the following methods:
+•	addBuilding(MyRectangle building): Adds a MyRectangle object to the list of buildings.
+•	addWalkway(MyRectangle from, MyRectangle to): Creates a new MyLine object connecting the centers of the two specified MyRectangle objects and adds it to the list of walkways. If either MyRectangle is not in the list of buildings, it should print an error message.
+•	addFountain(MyCircle fountain): Adds a MyCircle object to the list of fountains.
+•	calculateTotalWalkwayLength(): Returns the total length of all walkways on the map. This method must iterate through the list of MyLine objects and sum their lengths.
+•	calculateTotalFountainArea(): Returns the total area of all fountains on the map. This method must iterate through the list of MyCircle objects and sum their areas.
+•	isWalkwayFromTo(MyRectangle fromBuilding, MyRectangle toBuilding): Checks if a walkway exists between two buildings. This method should find the two buildings and then check if a MyLine object exists in the walkways list that connects their centers.
+Campus Map Layout to be added to TestCampusMap.java ( Its just a suggestion you can design your own campus)
+ Here's a possible layout for the campus within the 1000m x 1000m space, including the required buildings, fountain, and walkways.
+Key Features:
+•	Science Hall : A large rectangular building, centrally located.
+•	Library: A larger rectangular building, placed in a separate area to create a distinct section of the campus.
+•	Lecture Rooms: Five smaller rectangles clustered together. This configuration is efficient and common on a campus.
+•	Fountain: A central circular fountain that acts as a focal point and a meeting area.
+•	Walkways: Lines connecting all buildings to each other and to the central fountain, allowing for easy navigation throughout the campus. This layout ensures every building is accessible and contributes to a cohesive design.
+________________________________________
+Deliverables
+•	CampusMap.java: The complete and commented class file.
+•	TestCampusMap.java: A test driver that demonstrates all the methods in your CampusMap class, including adding buildings, fountains, walkways, and calculating total lengths and areas.
+•	Screenshots of the running code’s output.
+
+
